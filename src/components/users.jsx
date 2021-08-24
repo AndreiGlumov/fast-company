@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import api from "../api";
-// import UserItem from "./userItem";
+import UserItem from "./userItem";
 
 const Users = () => {
   const [users, setUsers] = useState(api.users.fetchAll());
 
   const handleDelete = (userId) => {
+    console.log(userId);
     setUsers(users.filter((user) => user._id !== userId));
   };
 
   const renderPhrase = (number) => {
-    if (number.length > 1 && number.length < 6) {
+    if (number.length > 1 && number.length < 5) {
       return `${number.length} человека тусанут с тобой сегодня`;
     } else if (number.length > 0) {
       return `${number.length} человек тусанёт с тобой сегодня`;
@@ -38,31 +39,8 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user._id} style={{ verticalAlign: "middle" }}>
-                <td>{user.name}</td>
-                <td>
-                  {user.qualities.map((item) => (
-                    <span
-                      className={"badge m-1 bg-" + item.color}
-                      key={item._id}
-                    >
-                      {item.name}
-                    </span>
-                  ))}
-                </td>
-                <td>{user.profession.name}</td>
-                <td>{user.completedMeetings}</td>
-                <td>{user.rate}</td>
-                <td style={{ textAlign: "center" }}>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(user._id)}
-                  >
-                    delete
-                  </button>
-                </td>
-              </tr>
+            {users.map((user, index) => (
+              <UserItem user={user} handleDelete={handleDelete} key={index} />
             ))}
           </tbody>
         </table>
