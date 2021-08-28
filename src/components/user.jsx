@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import Qualitie from "./qualitie";
 import BookMark from "./bookmark";
 
-const User = ({ user, handleDelete }) => {
-  const [bookmark, setBookmark] = useState(false);
-
-  const handleChangeBookmarkStatus = () => {
-    setBookmark(!bookmark);
-  };
-
+const User = ({ user, handleDelete, handleToggleBookMark }) => {
   return (
     <tr key={user._id}>
       <td>{user.name}</td>
@@ -19,10 +13,7 @@ const User = ({ user, handleDelete }) => {
       <td>{user.completedMeetings}</td>
       <td>{user.rate}</td>
       <td>
-        <BookMark
-          bookmark={bookmark}
-          handleChangeBookmarkStatus={handleChangeBookmarkStatus}
-        />
+        <BookMark user={user} handleToggleBookMark={handleToggleBookMark} />
       </td>
       <td style={{ textAlign: "center" }}>
         <button

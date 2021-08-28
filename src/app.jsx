@@ -6,6 +6,18 @@ import SearchStatus from "./components/searchStatus";
 const App = () => {
   const [users, setUsers] = useState(api.users.fetchAll());
 
+  const handleToggleBookMark = (id) => {
+    setUsers(
+      users.filter((user) => {
+        if (user._id === id) {
+          user.bookmark = !user.bookmark;
+          return user;
+        }
+        return user;
+      })
+    );
+  };
+
   const handleDelete = (userId) => {
     console.log(userId);
     setUsers(users.filter((user) => user._id !== userId));
@@ -28,6 +40,7 @@ const App = () => {
         users={users}
         handleDelete={handleDelete}
         renderPhrase={renderPhrase}
+        handleToggleBookMark={handleToggleBookMark}
       />
     </>
   );

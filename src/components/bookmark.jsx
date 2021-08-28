@@ -1,10 +1,12 @@
 import React from "react";
 
-const BookMark = ({ bookmark, handleChangeBookmarkStatus }) => {
+const BookMark = ({ user, handleToggleBookMark }) => {
   return (
     <>
-      <button onClick={handleChangeBookmarkStatus}>
-        <i className={bookmark ? "bi bi-bookmark-fill" : "bi bi-bookmark"}></i>
+      <button onClick={() => handleToggleBookMark(user._id)}>
+        <i
+          className={user.bookmark ? "bi bi-bookmark-fill" : "bi bi-bookmark"}
+        ></i>
       </button>
     </>
   );
