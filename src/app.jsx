@@ -5,7 +5,6 @@ import SearchStatus from "./components/searchStatus";
 
 const App = () => {
     const [users, setUsers] = useState(api.users.fetchAll());
-
     const handleToggleBookMark = (id) => {
         setUsers(
             users.filter((user) => {
